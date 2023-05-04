@@ -10,6 +10,7 @@ class Listener < Redmine::Hook::Listener
 
 		return unless channel and url
 		return if issue.is_private?
+		return if issue.priority.to_s != 'Severity 1 (Site Down)' && issue.priority.to_s != 'Severity 1 (Business Critical)'
 
 		msg = "[#{escape issue.project}] #{escape issue.author} created <#{object_url issue}|#{escape issue}>#{mentions issue.description}"
 
